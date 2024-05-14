@@ -26,18 +26,10 @@ struct VerticalRectangleProperties: RectangleProperties {
 
 
 class Board {
-private:
-    std::vector<std::vector<Field>> fields = {
-            {Field(0, 0, 300, 300),   Field(300, 0, 600, 300),   Field(600, 0, 900, 300)},
-            {Field(0, 300, 300, 600), Field(300, 300, 600, 600), Field(600, 300, 900, 600)},
-            {Field(0, 600, 300, 900), Field(300, 600, 600, 900), Field(600, 600, 900, 900)}
-    };
-
-    void drawSymbols(sf::RenderWindow &window) const;
-
 public:
     Board();
 
+public:
     void drawBoard(sf::RenderWindow &window) const;
     void setFieldValues(char symbol, int mousePressedX, int mousePressedY);
 
@@ -52,4 +44,14 @@ public:
     [[nodiscard]] std::vector<Field> getDiagonalSymbols(int rowIndex, int columnIndex) const;
     [[nodiscard]] std::vector<std::vector<Field>> getFields() const;
     Field& getFieldByCoordinates(int x, int y);
+
+private:
+    std::vector<std::vector<Field>> fields = {
+            {Field(0, 0, 300, 300),   Field(300, 0, 600, 300),   Field(600, 0, 900, 300)},
+            {Field(0, 300, 300, 600), Field(300, 300, 600, 600), Field(600, 300, 900, 600)},
+            {Field(0, 600, 300, 900), Field(300, 600, 600, 900), Field(600, 600, 900, 900)}
+    };
+
+    void drawSymbols(sf::RenderWindow &window) const;
+
 };

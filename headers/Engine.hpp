@@ -10,17 +10,15 @@ struct Resolution {
 };
 
 
-unsigned int Resolution::x = 900;
-unsigned int Resolution::y = 900;
-
-
 class Engine {
+public:
+    Engine();
+
+public:
+    void run();
+
 private:
     GameState gameState;
     sf::RenderWindow window;
     sf::Event event{};
-
-public:
-    Engine();
-    void run();
 };

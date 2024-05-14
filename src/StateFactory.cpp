@@ -1,19 +1,21 @@
-#include <StateFactory.hpp>
-#include <MenuState.hpp>
+#include "StateFactory.hpp"
+#include "MenuState.hpp"
+#include "ExitState.hpp"
 
-void StateFactory::handleState(sf::RenderWindow& window, sf::Font& font, sf::Event &event, State &state) {
-    auto gameState = state.getGameState();
-    switch (state.getGameState()) {
+State* StateFactory::createState(sf::RenderWindow& window, sf::Font& font, sf::Event &event, GameState gameState) {
+    switch (gameState) {
         case MENU:
-            m_currentState = new MenuState(window, font, gameState);
+            m_currentState = new MenuState(window, font, event, gameState);
             break;
         case LOCAL:
             break;
         case MULTIPLAYER:
             break;
         case EXIT:
-            window.close();
-            return;
+            m_currentState = new ExitState(window, font, event, gameState);
+            break;
     }
     m_currentState->init();
+    m_currentState->handle();
+    return m_currentState;
 }

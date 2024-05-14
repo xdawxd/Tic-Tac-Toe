@@ -5,6 +5,9 @@
 #include <State.hpp>
 #include <StateFactory.hpp>
 
+unsigned int Resolution::x = 900; // TODO: consider removing this or doing it the other way
+unsigned int Resolution::y = 900;
+
 Engine::Engine() {
     window.create(sf::VideoMode(Resolution::x, Resolution::y), "Tic Tac Toe", sf::Style::Titlebar | sf::Style::Close);
     gameState = MENU;
@@ -22,15 +25,15 @@ void Engine::run() {
     Game game(board);
     sf::Font font = initFont();
 
-    auto state = MenuState(window, font, MENU); // MenuState is being created here and in handleState()
-    StateFactory stateHandler{};
-
+    StateFactory stateFactory{};
     while (gameState != EXIT) {
         if (window.pollEvent(event) && event.type == sf::Event::Closed) {
-            state.setGameState(EXIT);
+            gameState = EXIT;
         }
-        stateHandler.handleState(window, font, event, state);
+        State* state = stateFactory.createState(window, font, event, gameState);
+
     }
+    window.close();
 
 //    while (window.isOpen()) {
 //        while (window.pollEvent(event)) {

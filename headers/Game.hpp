@@ -6,11 +6,10 @@
 #include <MenuState.hpp>
 
 class Game {
-private:
-    Board &board;
-
 public:
     explicit Game(Board &board); // todo: explicit?
+
+public:
     bool finished = false;
     // todo: struct for wins?
     short int xWins = 0;
@@ -22,4 +21,7 @@ public:
     bool checkWinner(char player);
 
     void reset(Action &action);
+
+private:
+    Board &board;
 };

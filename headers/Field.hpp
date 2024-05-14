@@ -8,6 +8,7 @@ public:
     explicit Field(char symbol); // TODO: why explicit?
     Field();
 
+public:
     int x0{}; // sets the default value (0 for int type)
     int y0{};
     int x1{};
@@ -16,8 +17,8 @@ public:
 
     char symbol = ' ';
 
+public:
     bool operator==(const Field& other) const {
         return symbol == other.symbol;
     }
-
 };
