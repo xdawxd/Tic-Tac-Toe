@@ -3,7 +3,6 @@
 
 Game::Game(Board &board) : board(board) {}
 
-
 bool Game::checkWinner(char symbol) {
     auto fields = board.getFields();
     auto playerField = Field(symbol);
@@ -37,8 +36,6 @@ bool Game::checkWinner(char symbol) {
     }
     return false;
 }
-
-
 
 void Game::checkMove() {
     if (checkWinner('x')) {

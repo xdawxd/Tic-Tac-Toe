@@ -4,21 +4,25 @@
 Board::Board() = default;
 
 void Board::drawBoard(sf::RenderWindow &window) const { // TODO: consider moving the drawing to the Engine class
-    sf::RectangleShape horizontalRectangle1(sf::Vector2f(window.getSize().x, rectangleThickness));
+    RectangleProperties rect;
+    HorizontalRectangleProperties horizontalRect;
+    VerticalRectangleProperties verticalRect;
+
+    sf::RectangleShape horizontalRectangle1(sf::Vector2f(window.getSize().x, rect.thickness));
     horizontalRectangle1.setFillColor(sf::Color::White);
-    horizontalRectangle1.setPosition(horizontalRectangleX, horizontalRectangleOneY);
+    horizontalRectangle1.setPosition(horizontalRect.x, horizontalRect.oneY);
 
-    sf::RectangleShape horizontalRectangle2(sf::Vector2f(window.getSize().x, rectangleThickness));
+    sf::RectangleShape horizontalRectangle2(sf::Vector2f(window.getSize().x, rect.thickness));
     horizontalRectangle2.setFillColor(sf::Color::White);
-    horizontalRectangle2.setPosition(horizontalRectangleX, horizontalRectangleTwoY);
+    horizontalRectangle2.setPosition(horizontalRect.x, horizontalRect.twoY);
 
-    sf::RectangleShape verticalRectangle1(sf::Vector2f(rectangleThickness, window.getSize().y));
+    sf::RectangleShape verticalRectangle1(sf::Vector2f(rect.thickness, window.getSize().y));
     verticalRectangle1.setFillColor(sf::Color::White);
-    verticalRectangle1.setPosition(verticalRectangleOneX, verticalRectangleY);
+    verticalRectangle1.setPosition(verticalRect.oneX, verticalRect.y);
 
-    sf::RectangleShape verticalRectangle2(sf::Vector2f(rectangleThickness, window.getSize().y));
+    sf::RectangleShape verticalRectangle2(sf::Vector2f(rect.thickness, window.getSize().y));
     verticalRectangle2.setFillColor(sf::Color::White);
-    verticalRectangle2.setPosition(verticalRectangleTwoX, verticalRectangleY);
+    verticalRectangle2.setPosition(verticalRect.twoX, verticalRect.y);
 
     window.draw(horizontalRectangle1);
     window.draw(horizontalRectangle2);
@@ -27,8 +31,6 @@ void Board::drawBoard(sf::RenderWindow &window) const { // TODO: consider moving
 
     drawSymbols(window);
 }
-
-
 
 void Board::setFieldValues(char symbol, int mousePressedX, int mousePressedY) {
     Field &field = getFieldByCoordinates(mousePressedX, mousePressedY);
@@ -71,12 +73,10 @@ std::vector<std::vector<Field>> Board::getFields() const {
     return fields;
 }
 
-
 std::vector<Field> Board::getRowSymbols(int rowIndex) const {
     std::vector<Field> rowFields = {fields[rowIndex][0], fields[rowIndex][1], fields[rowIndex][2]};
     return rowFields;
 }
-
 
 std::vector<Field> Board::getColumnSymbols(int columnIndex) const {
     std::vector<Field> symbols = {fields[0][columnIndex], fields[1][columnIndex], fields[2][columnIndex]};
@@ -91,20 +91,6 @@ bool Board::canWinDiagonally(int rowIndex, int columnIndex) const {
     return false;
 
 }
-
-/*
- *
- * X O O | O O X
- * O X O | O X O
- * O O X | X O O
- *
- * e.g.
- *
- * X 0 X
- * 0 X 0
- * - - X
- *
- */
 
 // TODO: optimize the diagonal win scenario
 std::vector<Field> Board::getDiagonalSymbols(int rowIndex, int columnIndex) const {
@@ -167,4 +153,5 @@ Field& Board::getFieldByCoordinates(int x, int y) {
                 return field;
         }
     }
+    throw std::out_of_range("No field found for the given coordinates.");
 }

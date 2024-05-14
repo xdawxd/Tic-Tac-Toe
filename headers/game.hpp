@@ -10,8 +10,9 @@ private:
     Board &board;
 
 public:
-    Game(Board &board);
+    explicit Game(Board &board); // todo: explicit?
     bool finished = false;
+    // todo: struct for wins?
     short int xWins = 0;
     short int yWins = 0;
 

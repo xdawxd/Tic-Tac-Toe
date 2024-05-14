@@ -12,8 +12,8 @@ private:
 public:
     // todo: read about the order of defining variables, constructors, methods etc. in a c++ class (best practices)
     explicit Action(Board &board); // todo: why use explicit
-    char currentSymbol = ' ';
 
+    char currentSymbol = ' ';
     void handleMove(sf::Event &event);
 };
 
