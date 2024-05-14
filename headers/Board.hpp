@@ -1,9 +1,8 @@
-#ifndef TIC_TAC_TOE_BOARD_HPP
-#define TIC_TAC_TOE_BOARD_HPP
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <field.hpp>
+#include <Field.hpp>
 
 struct RectangleProperties {
     const float thickness = 10.0f;
@@ -54,5 +53,3 @@ public:
     [[nodiscard]] std::vector<std::vector<Field>> getFields() const;
     Field& getFieldByCoordinates(int x, int y);
 };
-
-#endif //TIC_TAC_TOE_BOARD_HPP

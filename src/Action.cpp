@@ -3,7 +3,6 @@
 Action::Action(Board &board) : board(board) {}
 
 void Action::handleMove(sf::Event &event) {
-    Field &field = board.getFieldByCoordinates(event.mouseButton.x, event.mouseButton.y);
     char symbol = playedSymbol(event);
     if (currentSymbol == ' ') {
         currentSymbol = symbol;
@@ -13,6 +12,7 @@ void Action::handleMove(sf::Event &event) {
     if (currentSymbol == symbol)
         return;
     else {
+        Field &field = board.getFieldByCoordinates(event.mouseButton.x, event.mouseButton.y);
         if (field.symbol == ' ') {
             currentSymbol = symbol;
             board.setFieldValues(symbol, event.mouseButton.x, event.mouseButton.y);

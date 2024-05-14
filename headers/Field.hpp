@@ -1,5 +1,4 @@
-#ifndef TIC_TAC_TOE_FIELD_HPP
-#define TIC_TAC_TOE_FIELD_HPP
+#pragma once
 
 #include <SFML/Graphics.hpp>
 
@@ -22,5 +21,3 @@ public:
     }
 
 };
-
-#endif //TIC_TAC_TOE_FIELD_HPP

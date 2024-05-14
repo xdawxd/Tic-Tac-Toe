@@ -1,4 +1,4 @@
-#include <game.hpp>
+#include <Game.hpp>
 #include <iostream>
 
 Game::Game(Board &board) : board(board) {}

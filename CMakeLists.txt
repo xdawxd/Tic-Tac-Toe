@@ -4,16 +4,23 @@ project(tic_tac_toe)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(tic_tac_toe main.cpp
-        headers/engine.hpp
-        headers/board.hpp
-        headers/game.hpp
+        headers/Engine.hpp
+        headers/Board.hpp
+        headers/Game.hpp
         headers/Action.hpp
-        headers/field.hpp
-        src/engine.cpp
-        src/board.cpp
-        src/game.cpp
+        headers/Field.hpp
+        headers/State.hpp
+        headers/MenuState.hpp
+        headers/StateFactory.hpp
+        src/Engine.cpp
+        src/Board.cpp
+        src/Game.cpp
         src/Action.cpp
-        src/field.cpp)
+        src/Field.cpp
+        src/State.cpp
+        src/MenuState.cpp
+        src/StateFactory.cpp
+)
 
 include_directories(headers /usr/include c:/SFML/include)
 

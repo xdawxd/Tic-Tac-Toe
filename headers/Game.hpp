@@ -1,9 +1,9 @@
-#ifndef TIC_TAC_TOE_GAME_HPP
-#define TIC_TAC_TOE_GAME_HPP
+#pragma once
 
-#include <engine.hpp>
-#include <board.hpp>
+#include <Engine.hpp>
+#include <Board.hpp>
 #include <action.hpp>
+#include <MenuState.hpp>
 
 class Game {
 private:
@@ -23,5 +23,3 @@ public:
 
     void reset(Action &action);
 };
-
-#endif //TIC_TAC_TOE_GAME_HPP
