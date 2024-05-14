@@ -53,7 +53,7 @@ void Board::drawSymbols(sf::RenderWindow &window) const {
             text.setPosition(field.x0 + 50, field.y0 - 150);
             text.setFillColor(field.color);
 
-            std::cout << std::hex << field.color.toInteger() << std::endl; // todo: remove color debug
+            // std::cout << std::hex << field.color.toInteger() << std::endl; // todo: remove color debug
 
             window.draw(text);
         }

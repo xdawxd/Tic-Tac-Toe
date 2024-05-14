@@ -17,7 +17,6 @@ public:
 
     char symbol = ' ';
 
-    // overload the == operator for Field
     bool operator==(const Field& other) const {
         return symbol == other.symbol;
     }

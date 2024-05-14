@@ -2,7 +2,6 @@
 #define TIC_TAC_TOE_ENGINE_HPP
 
 #include <SFML/Graphics.hpp>
-#include <vector>
 
 
 class Engine {
