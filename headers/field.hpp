@@ -16,6 +16,12 @@ public:
     sf::Color color = sf::Color::White;
 
     char symbol = ' ';
+
+    // overload the == operator for Field
+    bool operator==(const Field& other) const {
+        return symbol == other.symbol;
+    }
+
 };
 
 #endif //TIC_TAC_TOE_FIELD_HPP

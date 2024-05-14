@@ -19,7 +19,6 @@ void Engine::run() {
             if (event.type == sf::Event::Closed)
                 window.close();
             if (game.finished) {
-//                board.colorWinningSymbols(window);
                 if (event.type == sf::Event::MouseButtonPressed)
                     game.reset(action);
             }

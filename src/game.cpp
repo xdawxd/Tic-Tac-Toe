@@ -6,27 +6,38 @@ Game::Game(Board &board) : board(board) {}
 
 bool Game::checkWinner(char symbol) {
     auto fields = board.getFields();
-    std::vector<char> playerWin(3, symbol);
+    auto playerField = Field(symbol);
+    std::vector<Field> playerWin(3, playerField);
     for (int row = 0; row < 3; ++row) {
         for (int column = 0; column < 3; ++column) {
             // check row winning scenario
-            if (board.getRowSymbols(row) == playerWin)
+            auto rowFields = board.getRowSymbols(row);
+            if (rowFields == playerWin) {
+                board.colorWinningSymbols(rowFields);
                 return true;
+            }
 
             // check column winning scenario
-            if (board.getColumnSymbols(column) == playerWin)
+            auto columnFields = board.getColumnSymbols(column);
+            if (columnFields == playerWin) {
+                board.colorWinningSymbols(columnFields);
                 return true;
+            }
 
             // check diagonal winning scenario
             // The player can win diagonally and the middle part is also occupied by the player
             if (board.canWinDiagonally(row, column) && fields[1][1].symbol == symbol) {
-                if (board.getDiagonalSymbols(row, column) == playerWin)
+                auto diagonalFields = board.getDiagonalSymbols(row, column);
+                if (diagonalFields == playerWin) {
+                    board.colorWinningSymbols(diagonalFields);
                     return true;
+                }
             }
         }
     }
     return false;
 }
+
 
 
 void Game::checkMove() {
@@ -54,6 +65,7 @@ void Game::checkMove() {
 void Game::reset(Action &action) {
     board.resetFields();
     action.currentSymbol = ' ';
+
     finished = false;
 }
 

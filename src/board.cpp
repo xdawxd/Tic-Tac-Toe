@@ -1,4 +1,5 @@
 #include <board.hpp>
+#include <iostream>
 
 Board::Board() = default;
 
@@ -50,6 +51,8 @@ void Board::drawSymbols(sf::RenderWindow &window) const {
             text.setPosition(field.x0 + 50, field.y0 - 150);
             text.setFillColor(field.color);
 
+            std::cout << std::hex << field.color.toInteger() << std::endl; // todo: remove color debug
+
             window.draw(text);
         }
     }
@@ -59,6 +62,7 @@ void Board::resetFields() {
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             fields[i][j].symbol = ' ';
+            fields[i][j].color = sf::Color::White;
         }
     }
 }
@@ -68,14 +72,14 @@ std::vector<std::vector<Field>> Board::getFields() const {
 }
 
 
-std::vector<char> Board::getRowSymbols(int rowIndex) const {
-    std::vector<char> symbols = {fields[rowIndex][0].symbol, fields[rowIndex][1].symbol, fields[rowIndex][2].symbol};
-    return symbols;
+std::vector<Field> Board::getRowSymbols(int rowIndex) const {
+    std::vector<Field> rowFields = {fields[rowIndex][0], fields[rowIndex][1], fields[rowIndex][2]};
+    return rowFields;
 }
 
 
-std::vector<char> Board::getColumnSymbols(int columnIndex) const {
-    std::vector<char> symbols = {fields[0][columnIndex].symbol, fields[1][columnIndex].symbol, fields[2][columnIndex].symbol};
+std::vector<Field> Board::getColumnSymbols(int columnIndex) const {
+    std::vector<Field> symbols = {fields[0][columnIndex], fields[1][columnIndex], fields[2][columnIndex]};
     return symbols;
 }
 
@@ -103,69 +107,45 @@ bool Board::canWinDiagonally(int rowIndex, int columnIndex) const {
  */
 
 // TODO: optimize the diagonal win scenario
-std::vector<char> Board::getDiagonalSymbols(int rowIndex, int columnIndex) const {
-    std::vector<char> symbols = {' ', ' ', ' '};
+std::vector<Field> Board::getDiagonalSymbols(int rowIndex, int columnIndex) const {
+    std::vector<Field> symbols(3, Field());
 
-    symbols[1] = fields[1][1].symbol; // set the middle field before any checks
+    symbols[1] = fields[1][1]; // set the middle field before any checks
     if (rowIndex == 0) {
         if (columnIndex == 0) { // TODO: move to a separate function
-            symbols[0] = fields[rowIndex][columnIndex].symbol;
-            symbols[2] = fields[rowIndex+2][columnIndex+2].symbol;
+            symbols[0] = fields[rowIndex][columnIndex];
+            symbols[2] = fields[rowIndex+2][columnIndex+2];
         }
 
         else if (columnIndex == 2) {
-            symbols[0] = fields[rowIndex][columnIndex].symbol;
-            symbols[2] = fields[rowIndex+2][columnIndex-2].symbol;
+            symbols[0] = fields[rowIndex][columnIndex];
+            symbols[2] = fields[rowIndex+2][columnIndex-2];
         }
     }
 
     else if (rowIndex == 2) {
         if (columnIndex == 0) {
-            symbols[0] = fields[rowIndex][columnIndex].symbol;
-            symbols[2] = fields[rowIndex-2][columnIndex+2].symbol;
+            symbols[0] = fields[rowIndex][columnIndex];
+            symbols[2] = fields[rowIndex-2][columnIndex+2];
         }
 
         else if (columnIndex == 2) {
-            symbols[0] = fields[rowIndex][columnIndex].symbol;
-            symbols[2] = fields[rowIndex-2][columnIndex-2].symbol;
+            symbols[0] = fields[rowIndex][columnIndex];
+            symbols[2] = fields[rowIndex-2][columnIndex-2];
         }
     }
 
     else if (columnIndex == 1) {
-        symbols[0] = fields[rowIndex-1][columnIndex-1].symbol;
-        symbols[2] = fields[rowIndex+1][columnIndex+1].symbol;
+        symbols[0] = fields[rowIndex-1][columnIndex-1];
+        symbols[2] = fields[rowIndex+1][columnIndex+1];
     }
     return symbols;
 }
 
-void Board::colorWinningSymbols(sf::RenderWindow &window) {
-    std::vector<char> xWin(3, 'x');
-    std::vector<char> yWin(3, 'o');
-
-    for (int row = 0; row < 3; ++row) {
-        for (int column = 0; column < 3; ++column) {
-            auto rowSymbols = getRowSymbols(row);
-
-            if ((rowSymbols == xWin) || (rowSymbols == yWin)) {
-                // e.g. change the rowSymbols[0].color = sf::Color(255, 0, 0);
-                // to display a red winning row
-            }
-
-
-            // check column winning scenario
-            if ((getColumnSymbols(column) == xWin) || (getColumnSymbols(column) == yWin))
-                return;
-
-            // check diagonal winning scenario
-            // The player can win diagonally and the middle part is also occupied by the player
-            if (
-                    (canWinDiagonally(row, column) && fields[1][1].symbol == 'x') ||
-                    (canWinDiagonally(row, column) && fields[1][1].symbol == 'y')
-                ) {
-                if ((getDiagonalSymbols(row, column) == xWin) || (getDiagonalSymbols(row, column) == yWin))
-                    return;
-            }
-        }
+void Board::colorWinningSymbols(const std::vector<Field>& winningFields) {
+    for (auto winningField: winningFields) {
+        Field& bField = getFieldByCoordinates(winningField.x0 + 20, winningField.y0 + 20); // todo: adjust the name, and ref the winning position...
+        bField.color = sf::Color(60, 0, 0);
     }
 }
 
@@ -188,6 +168,3 @@ Field& Board::getFieldByCoordinates(int x, int y) {
         }
     }
 }
-
-
-

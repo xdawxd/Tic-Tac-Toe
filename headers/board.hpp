@@ -32,15 +32,16 @@ public:
     void drawSymbols(sf::RenderWindow &window) const;
     void setFieldValues(char symbol, int mousePressedX, int mousePressedY);
     bool canWinDiagonally(int rowIndex, int columnIndex) const;
-    void colorWinningSymbols(sf::RenderWindow &window);
+    void colorWinningSymbols(const std::vector<Field>& winningFields);
 
     bool isFull();
 
-    std::vector<char> getDiagonalSymbols(int rowIndex, int columnIndex) const;
+    std::vector<Field> getRowSymbols(int rowIndex) const;
+    std::vector<Field> getColumnSymbols(int columnIndex) const;
+    std::vector<Field> getDiagonalSymbols(int rowIndex, int columnIndex) const;
+
     std::vector<std::vector<Field>> getFields() const;
-    std::vector<char> getRowSymbols(int rowIndex) const;
-    std::vector<char> getColumnSymbols(int columnIndex) const;
-    Field& getFieldByCoordinates(int x, int y); // todo: adjust parameter names
+    Field& getFieldByCoordinates(int x, int y);
 
     void resetFields();
 };
