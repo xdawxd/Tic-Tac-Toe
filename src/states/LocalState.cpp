@@ -1,6 +1,21 @@
-#include "LocalState.h"
+#include "states/LocalState.hpp"
 
 LocalState::LocalState(sf::RenderWindow &window, sf::Font &font) : State(window,font), m_board(), m_action(m_board) {}
+
+void LocalState::init() {
+    initScore();
+}
+
+void LocalState::update() {
+    updateScore();
+}
+
+void LocalState::render() {
+    m_window.clear(sf::Color(sf::Color::Black));
+    m_window.draw(m_score);
+    m_board.drawBoard(m_window);
+    m_window.display();
+}
 
 GameState LocalState::handleEvent() {
     sf::Event event{};
@@ -16,7 +31,11 @@ GameState LocalState::handleEvent() {
             checkMove();
         }
     }
-    return gameState;
+    return m_gameState;
+}
+
+GameState LocalState::getGameState() {
+    return m_gameState;
 }
 
 GameState LocalState::handleStateActions() {
@@ -25,20 +44,35 @@ GameState LocalState::handleStateActions() {
     return gameState;
 }
 
-void LocalState::init() {
-    initScore();
-    initBoard();
+void LocalState::reset() {
+    m_board.resetFields();
+    m_action.currentSymbol = ' ';
+
+    finished = false;
 }
 
-void LocalState::update() {
-    updateScore();
-}
+void LocalState::checkMove() {
+    if (checkWinner('x')) {
+        xWins += 1;
+        finished = true;
+        std::cout << "x wins" << std::endl;
+    } else if (checkWinner('o')) {
+        yWins += 1;
+        finished = true;
+        std::cout << "o wins" << std::endl;
+    }
 
-void LocalState::render() {
-    m_window.clear(sf::Color(sf::Color::Black));
-    m_window.draw(m_score);
-    m_board.drawBoard(m_window);
-    m_window.display();
+    if (m_board.isFull() && !finished) {
+        finished = true;
+        std::cout << "draw" << std::endl;
+//        std::string score = "Draw"; // todo
+//        m_score.setString(score);
+    }
+
+    if (xWins == 10 || yWins == 10) {
+        xWins = 0;
+        yWins = 0;
+    }
 }
 
 bool LocalState::checkWinner(char symbol) {
@@ -75,35 +109,6 @@ bool LocalState::checkWinner(char symbol) {
     return false;
 }
 
-void LocalState::checkMove() {
-    if (checkWinner('x')) {
-        xWins += 1;
-        finished = true;
-        std::cout << "x wins" << std::endl;
-    } else if (checkWinner('o')) {
-        yWins += 1;
-        finished = true;
-        std::cout << "o wins" << std::endl;
-    }
-
-    if (m_board.isFull() && !finished) {
-        finished = true;
-        std::cout << "draw" << std::endl;
-    }
-
-    if (xWins == 10 || yWins == 10) {
-        xWins = 0;
-        yWins = 0;
-    }
-}
-
-void LocalState::reset() {
-    m_board.resetFields();
-    m_action.currentSymbol = ' ';
-
-    finished = false;
-}
-
 void LocalState::initScore() {
     std::string score = std::to_string(xWins) + ":" + std::to_string(yWins);
     m_score.setString(score);
@@ -113,13 +118,9 @@ void LocalState::initScore() {
     m_score.setFillColor(sf::Color(51, 51, 51));
 }
 
-void LocalState::initBoard() {}
-
 void LocalState::updateScore() {
     std::string score = std::to_string(xWins) + ":" + std::to_string(yWins);
     m_score.setString(score);
 }
 
-GameState LocalState::getGameState() {
-    return gameState;
-}
+void LocalState::initBackToMenuButton() {}

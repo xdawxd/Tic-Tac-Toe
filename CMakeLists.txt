@@ -6,24 +6,24 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(tic_tac_toe main.cpp
         headers/Engine.hpp
         headers/Board.hpp
-        headers/Game.hpp
         headers/Action.hpp
         headers/Field.hpp
-        headers/State.hpp
-        headers/MenuState.hpp
+        headers/states/State.hpp
+        headers/states/MenuState.hpp
+        headers/states/LocalState.hpp
+        headers/states/MultiplayerState.hpp
+        headers/states/ExitState.hpp
         headers/StateFactory.hpp
         src/Engine.cpp
         src/Board.cpp
-        src/Game.cpp
         src/Action.cpp
         src/Field.cpp
-        src/State.cpp
-        src/MenuState.cpp
+        src/states/State.cpp
+        src/states/MenuState.cpp
         src/StateFactory.cpp
-        headers/ExitState.hpp
-        src/ExitState.cpp
-        headers/LocalState.h
-        src/LocalState.cpp
+        src/states/ExitState.cpp
+        src/states/LocalState.cpp
+        src/states/MultiplayerState.cpp
 )
 
 include_directories(headers /usr/include c:/SFML/include)

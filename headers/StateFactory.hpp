@@ -1,10 +1,10 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "State.hpp"
-#include "MenuState.hpp"
-#include "LocalState.h"
-#include "ExitState.hpp"
+#include "states/State.hpp"
+#include "states/MenuState.hpp"
+#include "states/LocalState.hpp"
+#include "states/ExitState.hpp"
 
 class StateFactory {
 public:

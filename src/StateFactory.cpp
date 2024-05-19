@@ -3,7 +3,7 @@
 GameState StateFactory::createState(sf::RenderWindow& window, sf::Font& font, GameState& gameState) {
     if (m_currentState == nullptr || m_currentState->getGameState() != gameState) {
         delete m_currentState;
-        m_currentState = nullptr;
+        m_currentState = nullptr; //todo: is this necessary
 
         switch (gameState) {
             case MENU:

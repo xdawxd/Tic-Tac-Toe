@@ -15,35 +15,35 @@ public:
     ~LocalState() override = default;
 
 public:
-    GameState getGameState() override;
-    GameState handleEvent() override;
-    GameState handleStateActions() override;
     void init() override;
     void update() override;
     void render() override;
+    GameState handleEvent() override;
+    GameState getGameState() override;
+    GameState handleStateActions() override;
 
 public:
     bool finished = false;
 
 public:
+    void reset();
     void checkMove();
     bool checkWinner(char player);
-    void reset();
+
+private:
+    void initScore();
+    void updateScore();
+    void initBackToMenuButton(); // todo
 
 private:
     Board m_board;
     Action m_action;
 
-    std::vector<sf::Text> boardGrid;
     sf::Text m_score;
 
     short int xWins = 0;
     short int yWins = 0;
-    GameState gameState = LOCAL;
+    GameState m_gameState = LOCAL;
 
-private:
-    void initScore();
-    void initBoard();
-
-    void updateScore();
+    std::vector<sf::Text> boardGrid;  // todo: unused?
 };

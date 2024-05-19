@@ -3,7 +3,8 @@
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
-#include <State.hpp>
+
+#include "State.hpp"
 
 class MenuState : public State {
 public:
@@ -11,19 +12,19 @@ public:
     ~MenuState() override = default;
 
 public:
-    GameState getGameState() override;
-    GameState handleEvent() override;
-    GameState handleStateActions() override;
     void init() override;
     void update() override;
     void render() override;
+    GameState handleEvent() override;
+    GameState getGameState() override;
+    GameState handleStateActions() override;
+
+private:
+    void initTitle();
+    void initOptions();
 
 private:
     sf::Text title;
-    GameState gameState = MENU;
-
-private:
+    GameState m_gameState = MENU;
     std::vector<sf::Text> menuOptions;
-    void initTitle();
-    void initOptions();
 };

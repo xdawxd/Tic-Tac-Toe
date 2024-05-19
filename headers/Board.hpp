@@ -31,6 +31,7 @@ public:
 
 public:
     void drawBoard(sf::RenderWindow &window) const;
+
     void setFieldValues(char symbol, int mousePressedX, int mousePressedY);
 
     [[nodiscard]] bool canWinDiagonally(int rowIndex, int columnIndex) const;

@@ -1,5 +1,5 @@
 #include <Engine.hpp>
-#include <State.hpp>
+#include "states/State.hpp"
 #include <StateFactory.hpp>
 
 unsigned int GameWindow::resolutionX = 900;

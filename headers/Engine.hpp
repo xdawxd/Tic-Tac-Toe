@@ -3,7 +3,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "State.hpp"
+#include "states/State.hpp"
 
 struct GameWindow {
     static unsigned int resolutionX;

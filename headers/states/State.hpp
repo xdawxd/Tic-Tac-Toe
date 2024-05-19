@@ -12,15 +12,15 @@ public:
 public:
     virtual void updateAndRender();
 
-    virtual GameState getGameState() = 0;
     virtual void init() = 0;
     virtual void update() = 0;
     virtual void render() = 0;
     virtual GameState handleEvent() = 0;
+    virtual GameState getGameState() = 0;
     virtual GameState handleStateActions() = 0;
 
 protected:
     sf::RenderWindow& m_window;
     sf::Font& m_font;
-    GameState gameState;
+    GameState m_gameState;
 };

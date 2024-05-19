@@ -1,8 +1,39 @@
-#include <iostream>
-#include "MenuState.hpp"
+#include <iostream> // todo: debug only
 
+#include "states/MenuState.hpp"
 
 MenuState::MenuState(sf::RenderWindow &window, sf::Font& font) : State(window, font) {}
+
+void MenuState::init() {
+    initTitle();
+    initOptions();
+}
+
+void MenuState::update() {
+    sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
+
+    for (auto & menuOption : menuOptions)
+    {
+        if (menuOption.getGlobalBounds().contains(mousePosition))
+            menuOption.setScale(1.1f, 1.1f);
+        else
+            menuOption.setScale(1.f, 1.f);
+    }
+}
+
+void MenuState::render() {
+    m_window.clear(sf::Color(sf::Color::Black));
+
+    //window->draw(background);
+    m_window.draw(title);
+
+    for (const auto & menuOption : menuOptions)
+    {
+        m_window.draw(menuOption);
+    }
+
+    m_window.display();
+}
 
 GameState MenuState::handleEvent() {
     sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
@@ -19,14 +50,18 @@ GameState MenuState::handleEvent() {
         else if (event.type == sf::Event::MouseButtonReleased && menuOptions[1].getGlobalBounds().contains(mousePosition))
             return MULTIPLAYER;
     }
+    return m_gameState;
+}
+
+GameState MenuState::getGameState() {
+    return m_gameState;
+}
+
+GameState MenuState::handleStateActions() {
+    GameState gameState = handleEvent();
+    State::updateAndRender();
     return gameState;
 }
-
-void MenuState::init() {
-    initTitle();
-    initOptions();
-}
-
 
 void MenuState::initTitle() {
     title.setString("Tic Tac Toe");
@@ -62,40 +97,4 @@ void MenuState::initOptions() {
 
         menuOptions.push_back(option);
     }
-}
-
-GameState MenuState::handleStateActions() {
-    GameState gameState = handleEvent();
-    State::updateAndRender();
-    return gameState;
-}
-
-void MenuState::update() {
-    sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
-
-    for (auto & menuOption : menuOptions)
-    {
-        if (menuOption.getGlobalBounds().contains(mousePosition))
-            menuOption.setScale(1.1f, 1.1f);
-        else
-            menuOption.setScale(1.f, 1.f);
-    }
-}
-
-void MenuState::render() {
-    m_window.clear(sf::Color(sf::Color::Black));
-
-    //window->draw(background);
-    m_window.draw(title);
-
-    for (const auto & menuOption : menuOptions)
-    {
-        m_window.draw(menuOption);
-    }
-
-    m_window.display();
-}
-
-GameState MenuState::getGameState() {
-    return gameState;
 }
