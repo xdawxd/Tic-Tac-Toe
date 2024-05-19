@@ -21,7 +21,15 @@ a Tic Tac Toe game implementation using C++ and SFML introducing local mode and 
 
 ## Screenshots
 
-<p style="color: red">TODO</p>
+### Menu
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/03f8387a-fe10-4824-a4e4-1bbfe077c08e)
+
+### Local view
+
+![Uploading image.png…]()
+
+### Player win
+![Uploading image.png…]()
 
 ## Design patterns used
 
