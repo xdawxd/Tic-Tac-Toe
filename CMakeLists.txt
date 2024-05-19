@@ -20,10 +20,10 @@ add_executable(tic_tac_toe main.cpp
         src/Field.cpp
         src/states/State.cpp
         src/states/MenuState.cpp
-        src/StateFactory.cpp
-        src/states/ExitState.cpp
         src/states/LocalState.cpp
         src/states/MultiplayerState.cpp
+        src/states/ExitState.cpp
+        src/StateFactory.cpp
 )
 
 include_directories(headers /usr/include c:/SFML/include)
