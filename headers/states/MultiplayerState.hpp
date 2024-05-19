@@ -2,7 +2,6 @@
 
 #include "State.hpp"
 
-
 class MultiplayerState : public State {
 public:
     explicit MultiplayerState(sf::RenderWindow &window, sf::Font& font);

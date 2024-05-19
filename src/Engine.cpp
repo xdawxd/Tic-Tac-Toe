@@ -1,6 +1,6 @@
-#include <Engine.hpp>
+#include "Engine.hpp"
 #include "states/State.hpp"
-#include <StateFactory.hpp>
+#include "StateFactory.hpp"
 
 unsigned int GameWindow::resolutionX = 900;
 unsigned int GameWindow::resolutionY = 900;

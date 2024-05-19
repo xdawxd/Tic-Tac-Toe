@@ -1,9 +1,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 #include "states/State.hpp"
 #include "states/MenuState.hpp"
 #include "states/LocalState.hpp"
+#include "states/MultiplayerState.hpp"
 #include "states/ExitState.hpp"
 
 class StateFactory {

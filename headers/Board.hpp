@@ -1,8 +1,9 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <vector>
-#include <Field.hpp>
+#include <SFML/Graphics.hpp>
+
+#include "Field.hpp"
 
 struct RectangleProperties {
     const float thickness = 10.0f;
