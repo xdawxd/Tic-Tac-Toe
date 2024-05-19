@@ -30,9 +30,9 @@ a Tic Tac Toe game implementation using C++ and SFML introducing local mode and 
 
 ## TODO
 
-* Refactor function definition order in .cpp files
-* Rearange public/protected/private methods and variables inside the classes to some unified order
-* Change #include <> to "" for local .hpp files 
+* ~~Refactor function definition order in .cpp files~~
+* ~~Rearange public/protected/private methods and variables inside the classes to some unified order~~
+* ~~Change #include <> to "" for local .hpp files~~
 * Implement Multiplayer state
 * Implement Singleplayer (AI)
   * Add difficulties (EASY, NORMAL, HARD) - new State after selecting Local e.g.
