@@ -22,6 +22,8 @@ add_executable(tic_tac_toe main.cpp
         src/StateFactory.cpp
         headers/ExitState.hpp
         src/ExitState.cpp
+        headers/LocalState.h
+        src/LocalState.cpp
 )
 
 include_directories(headers /usr/include c:/SFML/include)

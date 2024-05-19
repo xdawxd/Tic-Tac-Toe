@@ -24,4 +24,5 @@ public:
 
 private:
     Board &board;
+
 };

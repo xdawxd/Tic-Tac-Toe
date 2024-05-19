@@ -1,13 +1,15 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <State.hpp>
+#include "State.hpp"
+#include "MenuState.hpp"
+#include "LocalState.h"
+#include "ExitState.hpp"
 
 class StateFactory {
 public:
-    State* createState(sf::RenderWindow& window, sf::Font& font, sf::Event& event, GameState gameState);
+    GameState createState(sf::RenderWindow& window, sf::Font& font, GameState& gameState);
 
 private:
     State* m_currentState;
-
 };

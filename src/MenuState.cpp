@@ -1,18 +1,22 @@
-#include <MenuState.hpp>
+#include <iostream>
+#include "MenuState.hpp"
 
-MenuState::MenuState(sf::RenderWindow &window, sf::Font& font, sf::Event& event, GameState state) : State(window, font, event, state) {}
+
+MenuState::MenuState(sf::RenderWindow &window, sf::Font& font) : State(window, font) {}
 
 GameState MenuState::handleEvent() {
     sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
 
-    while (m_window.pollEvent(m_event))
+
+    sf::Event event{};
+    while (m_window.pollEvent(event))
     {
-        if (m_event.type == sf::Event::Closed ||
-            (m_event.type == sf::Event::MouseButtonReleased && menuOptions[3].getGlobalBounds().contains(mousePosition)))
+        if (event.type == sf::Event::Closed ||
+            (event.type == sf::Event::MouseButtonReleased && menuOptions[2].getGlobalBounds().contains(mousePosition)))
             return EXIT;
-        else if (m_event.type == sf::Event::MouseButtonReleased && menuOptions[0].getGlobalBounds().contains(mousePosition))
+        else if (event.type == sf::Event::MouseButtonReleased && menuOptions[0].getGlobalBounds().contains(mousePosition))
             return LOCAL;
-        else if (m_event.type == sf::Event::MouseButtonReleased && menuOptions[1].getGlobalBounds().contains(mousePosition))
+        else if (event.type == sf::Event::MouseButtonReleased && menuOptions[1].getGlobalBounds().contains(mousePosition))
             return MULTIPLAYER;
     }
     return gameState;
@@ -60,9 +64,10 @@ void MenuState::initOptions() {
     }
 }
 
-void MenuState::handle() {
-    gameState = handleEvent();
-    State::handle(); // todo: why using the "scope" (::) ?
+GameState MenuState::handleStateActions() {
+    GameState gameState = handleEvent();
+    State::updateAndRender();
+    return gameState;
 }
 
 void MenuState::update() {
@@ -89,4 +94,8 @@ void MenuState::render() {
     }
 
     m_window.display();
+}
+
+GameState MenuState::getGameState() {
+    return gameState;
 }

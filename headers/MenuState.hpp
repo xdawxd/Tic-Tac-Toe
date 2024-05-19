@@ -7,18 +7,20 @@
 
 class MenuState : public State {
 public:
-    explicit MenuState(sf::RenderWindow &window, sf::Font& font, sf::Event& event, GameState state);
+    explicit MenuState(sf::RenderWindow &window, sf::Font& font);
+    ~MenuState() override = default;
 
 public:
+    GameState getGameState() override;
     GameState handleEvent() override;
-    void handle() override;
+    GameState handleStateActions() override;
     void init() override;
     void update() override;
     void render() override;
 
 private:
-    GameState gameState = MENU;
     sf::Text title;
+    GameState gameState = MENU;
 
 private:
     std::vector<sf::Text> menuOptions;

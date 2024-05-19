@@ -28,6 +28,24 @@ a Tic Tac Toe game implementation using C++ and SFML introducing local mode and 
 * Factory Method - State handling
 * Observer - Game state updating
 
+## TODO
+
+* Refactor function definition order in .cpp files
+* Rearange public/protected/private methods and variables inside the classes to some unified order
+* Change #include <> to "" for local .hpp files 
+* Implement Multiplayer state
+* Implement Singleplayer (AI)
+  * Add difficulties (EASY, NORMAL, HARD) - new State after selecting Local e.g.
+```
+LOCAL
+SINGLEPLAYER
+  --> EASY
+  --> NORMAL
+  --> HARD
+MULTIPLAYER
+EXIT
+```
+
 ## Authors
 
 Contributors names and contact info

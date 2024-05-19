@@ -1,12 +1,14 @@
 #pragma once
 
+#include <string>
 #include <SFML/Graphics.hpp>
-#include <State.hpp>
 
+#include "State.hpp"
 
-struct Resolution {
-    static unsigned int x;
-    static unsigned int y;
+struct GameWindow {
+    static unsigned int resolutionX;
+    static unsigned int resolutionY;
+    static std::string title;
 };
 
 
@@ -20,5 +22,4 @@ public:
 private:
     GameState gameState;
     sf::RenderWindow window;
-    sf::Event event{};
 };

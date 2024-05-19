@@ -6,21 +6,21 @@ enum GameState {MENU, LOCAL, MULTIPLAYER, EXIT};
 
 class State {
 public:
-    explicit State(sf::RenderWindow &window, sf::Font& font, sf::Event& event, GameState state);
-    ~State() = default; // todo: will this work as intended?
+    explicit State(sf::RenderWindow &window, sf::Font& font);
+    virtual ~State() = default;
 
 public:
-    GameState getGameState() const;
+    virtual void updateAndRender();
 
-    virtual void handle(); // todo: rename?
-    virtual GameState handleEvent() = 0;
+    virtual GameState getGameState() = 0;
     virtual void init() = 0;
     virtual void update() = 0;
     virtual void render() = 0;
+    virtual GameState handleEvent() = 0;
+    virtual GameState handleStateActions() = 0;
 
 protected:
     sf::RenderWindow& m_window;
     sf::Font& m_font;
-    sf::Event& m_event;
-    GameState m_state;
+    GameState gameState;
 };
