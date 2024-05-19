@@ -22,14 +22,22 @@ a Tic Tac Toe game implementation using C++ and SFML introducing local mode and 
 ## Screenshots
 
 ### Menu
-![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/03f8387a-fe10-4824-a4e4-1bbfe077c08e)
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/5e96e0d6-83bd-44e3-aa9d-0ab7dcc7f2cc)
 
 ### Local view
-
-![Uploading image.png…]()
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/433493ce-75ef-4094-9302-2c77d08e10b8)
 
 ### Player win
-![Uploading image.png…]()
+
+**Horizontal**
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/2b2d65c6-1388-4e7a-8d01-08e370d3499a)
+
+
+**Vertical**
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/6cf6a859-08bb-46f6-9f29-9688181ca1dd)
+
+**Diagonal**
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/ce03fc9e-1ffd-4074-974f-ea973b81cdad)
 
 ## Design patterns used
 
