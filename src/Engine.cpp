@@ -14,7 +14,7 @@ Engine::Engine() {
 
 sf::Font initFont() {
     sf::Font font;
-    font.loadFromFile("../fonts/arial.ttf"); // adjust the CWD to remove the ../
+    font.loadFromFile("../fonts/arial.ttf"); // TODO: adjust the CWD to remove the ../
     return font;
 }
 

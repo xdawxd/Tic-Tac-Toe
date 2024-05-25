@@ -68,7 +68,7 @@ void LocalState::checkMove() {
     if (m_board.isFull() && !finished) {
         finished = true;
         std::cout << "draw" << std::endl;
-//        std::string score = "Draw"; // todo
+//        std::string score = "Draw"; // TODO
 //        m_score.setString(score);
     }
 
@@ -134,7 +134,7 @@ void LocalState::initBackToMenuButton() {
     m_menuButton.setOutlineColor(sf::Color::White);
     m_menuButton.setOutlineThickness(2);
     m_menuButton.setCharacterSize(24);
-    m_menuButton.setOrigin(
+    m_menuButton.setOrigin( // TODO: correct the position
             m_menuButton.getGlobalBounds().left  + m_menuButton.getGlobalBounds().width / 2.f,
             m_menuButton.getGlobalBounds().top + m_menuButton.getGlobalBounds().height / 2.f
     );

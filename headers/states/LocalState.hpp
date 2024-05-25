@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-#include <iostream> // todo: for debug only
+#include <iostream> // TODO: for debug only
 #include <SFML/Graphics.hpp>
 
 #include "Action.hpp"
@@ -33,7 +33,7 @@ public:
 private:
     void initScore();
     void updateScore();
-    void initBackToMenuButton(); // todo
+    void initBackToMenuButton();
     void updateBackToMenuButton();
 
 private:
@@ -47,5 +47,5 @@ private:
     short int yWins = 0;
     GameState m_gameState = LOCAL;
 
-    std::vector<sf::Text> boardGrid;  // todo: unused?
+    std::vector<sf::Text> boardGrid;  // TODO: unused?
 };
