@@ -3,7 +3,7 @@
 GameState StateFactory::createState(sf::RenderWindow& window, sf::Font& font, GameState& gameState) {
     if (m_currentState == nullptr || m_currentState->getGameState() != gameState) {
         delete m_currentState;
-        m_currentState = nullptr; //todo: is this necessary
+        m_currentState = nullptr;
 
         switch (gameState) {
             case MENU:
@@ -13,6 +13,7 @@ GameState StateFactory::createState(sf::RenderWindow& window, sf::Font& font, Ga
                 m_currentState = new LocalState(window, font);
                 break;
             case MULTIPLAYER:
+                m_currentState = new MultiplayerState(window, font);
                 break;
             case EXIT:
                 m_currentState = new ExitState(window, font);

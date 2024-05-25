@@ -3,6 +3,9 @@ project(tic_tac_toe)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Include winsock32
+link_libraries(ws2_32 wsock32)
+
 add_executable(tic_tac_toe main.cpp
         headers/Engine.hpp
         headers/Board.hpp

@@ -5,7 +5,7 @@
 class Field {
 public:
     Field(int x0, int y0, int x1, int y1);
-    explicit Field(char symbol); // TODO: why explicit?
+    explicit Field(char symbol);
     Field();
 
 public:

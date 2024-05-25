@@ -24,7 +24,7 @@ private:
     void initOptions();
 
 private:
-    sf::Text title;
+    sf::Text m_title;
     GameState m_gameState = MENU;
-    std::vector<sf::Text> menuOptions;
+    std::vector<sf::Text> m_menuOptions;
 };

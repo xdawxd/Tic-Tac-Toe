@@ -13,5 +13,6 @@ public:
 
 private:
     Board &board;
-    static char playedSymbol(sf::Event &event);
+    void setCurrentSymbol(sf::Event& event, char symbol);
+//    char playedSymbol(sf::Event &event);
 };

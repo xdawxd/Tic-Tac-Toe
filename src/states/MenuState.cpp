@@ -12,7 +12,7 @@ void MenuState::init() {
 void MenuState::update() {
     sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
 
-    for (auto & menuOption : menuOptions)
+    for (auto & menuOption : m_menuOptions)
     {
         if (menuOption.getGlobalBounds().contains(mousePosition))
             menuOption.setScale(1.1f, 1.1f);
@@ -23,15 +23,11 @@ void MenuState::update() {
 
 void MenuState::render() {
     m_window.clear(sf::Color(sf::Color::Black));
-
-    //window->draw(background);
-    m_window.draw(title);
-
-    for (const auto & menuOption : menuOptions)
+    m_window.draw(m_title);
+    for (const auto & menuOption : m_menuOptions)
     {
         m_window.draw(menuOption);
     }
-
     m_window.display();
 }
 
@@ -43,11 +39,11 @@ GameState MenuState::handleEvent() {
     while (m_window.pollEvent(event))
     {
         if (event.type == sf::Event::Closed ||
-            (event.type == sf::Event::MouseButtonReleased && menuOptions[2].getGlobalBounds().contains(mousePosition)))
+            (event.type == sf::Event::MouseButtonReleased && m_menuOptions[2].getGlobalBounds().contains(mousePosition)))
             return EXIT;
-        else if (event.type == sf::Event::MouseButtonReleased && menuOptions[0].getGlobalBounds().contains(mousePosition))
+        else if (event.type == sf::Event::MouseButtonReleased && m_menuOptions[0].getGlobalBounds().contains(mousePosition))
             return LOCAL;
-        else if (event.type == sf::Event::MouseButtonReleased && menuOptions[1].getGlobalBounds().contains(mousePosition))
+        else if (event.type == sf::Event::MouseButtonReleased && m_menuOptions[1].getGlobalBounds().contains(mousePosition))
             return MULTIPLAYER;
     }
     return m_gameState;
@@ -64,18 +60,18 @@ GameState MenuState::handleStateActions() {
 }
 
 void MenuState::initTitle() {
-    title.setString("Tic Tac Toe");
-    title.setFont(m_font);
+    m_title.setString("Tic Tac Toe");
+    m_title.setFont(m_font);
 
-    title.setFillColor(sf::Color(sf::Color::Black));
-    title.setOutlineColor(sf::Color::White);
-    title.setOutlineThickness(4);
-    title.setCharacterSize(96);
-    title.setOrigin(
-            title.getGlobalBounds().left + title.getGlobalBounds().width / 2.f,
-            title.getGlobalBounds().top + title.getGlobalBounds().height / 2.f
+    m_title.setFillColor(sf::Color(sf::Color::Black));
+    m_title.setOutlineColor(sf::Color::White);
+    m_title.setOutlineThickness(4);
+    m_title.setCharacterSize(96);
+    m_title.setOrigin(
+            m_title.getGlobalBounds().left + m_title.getGlobalBounds().width / 2.f,
+            m_title.getGlobalBounds().top + m_title.getGlobalBounds().height / 2.f
     );
-    title.setPosition(sf::Vector2f(m_window.getSize().x / 2.f, m_window.getSize().y / 12.f));
+    m_title.setPosition(sf::Vector2f(m_window.getSize().x / 2.f, m_window.getSize().y / 12.f));
 }
 
 void MenuState::initOptions() {
@@ -95,6 +91,6 @@ void MenuState::initOptions() {
         option.setFillColor(sf::Color(sf::Color::Black));
         option.setOutlineColor(sf::Color::White);
 
-        menuOptions.push_back(option);
+        m_menuOptions.push_back(option);
     }
 }

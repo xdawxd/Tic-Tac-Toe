@@ -1,20 +1,20 @@
 #pragma once
 
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
 #include "State.hpp"
 
 class MultiplayerState : public State {
 public:
     explicit MultiplayerState(sf::RenderWindow &window, sf::Font& font);
-    virtual ~MultiplayerState() = default;
+    ~MultiplayerState() override = default;
 
 public:
-    virtual void updateAndRender();
-
-    virtual void init() = 0;
-    virtual void update() = 0;
-    virtual void render() = 0;
-    virtual GameState handleEvent() = 0;
-    virtual GameState getGameState() = 0;
-    virtual GameState handleStateActions() = 0;
-
+    void init() override;
+    void update() override;
+    void render() override;
+    GameState handleEvent() override;
+    GameState getGameState() override;
+    GameState handleStateActions() override;
 };

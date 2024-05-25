@@ -34,12 +34,14 @@ private:
     void initScore();
     void updateScore();
     void initBackToMenuButton(); // todo
+    void updateBackToMenuButton();
 
 private:
     Board m_board;
     Action m_action;
 
     sf::Text m_score;
+    sf::Text m_menuButton;
 
     short int xWins = 0;
     short int yWins = 0;

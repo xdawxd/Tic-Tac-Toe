@@ -1,19 +1,22 @@
 #include "states/LocalState.hpp"
 
-LocalState::LocalState(sf::RenderWindow &window, sf::Font &font) : State(window,font), m_board(), m_action(m_board) {}
+LocalState::LocalState(sf::RenderWindow &window, sf::Font &font) : State(window,font), m_board(m_font), m_action(m_board) {}
 
 void LocalState::init() {
     initScore();
+    initBackToMenuButton();
 }
 
 void LocalState::update() {
     updateScore();
+    updateBackToMenuButton();
 }
 
 void LocalState::render() {
     m_window.clear(sf::Color(sf::Color::Black));
     m_window.draw(m_score);
     m_board.drawBoard(m_window);
+    m_window.draw(m_menuButton);
     m_window.display();
 }
 
@@ -123,4 +126,32 @@ void LocalState::updateScore() {
     m_score.setString(score);
 }
 
-void LocalState::initBackToMenuButton() {}
+void LocalState::initBackToMenuButton() {
+    m_menuButton.setString("MENU");
+    m_menuButton.setFont(m_font);
+
+    m_menuButton.setFillColor(sf::Color(sf::Color::Black));
+    m_menuButton.setOutlineColor(sf::Color::White);
+    m_menuButton.setOutlineThickness(2);
+    m_menuButton.setCharacterSize(24);
+    m_menuButton.setOrigin(
+            m_menuButton.getGlobalBounds().left  + m_menuButton.getGlobalBounds().width / 2.f,
+            m_menuButton.getGlobalBounds().top + m_menuButton.getGlobalBounds().height / 2.f
+    );
+    m_menuButton.setPosition(sf::Vector2f(m_window.getSize().x / 20.f, m_window.getSize().y / 40.f));
+}
+
+void LocalState::updateBackToMenuButton() {
+    // The same functionality as MenuState.update(), move to State?
+    // TODO: create a base button class that redirects to another state
+    // e.g. in MenuState all of the buttons redirect to some other state
+    // in LocalState while clicking the "MENU" button, we also want to redirect back to menu
+    // The class should have: checkIfClicked(), scaleOnHover(), redirect()
+    sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
+
+    if (m_menuButton.getGlobalBounds().contains(mousePosition))
+        m_menuButton.setScale(1.1f, 1.1f);
+    else {
+        m_menuButton.setScale(1.f, 1.f);
+    }
+}

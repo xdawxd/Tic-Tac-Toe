@@ -28,12 +28,12 @@ struct VerticalRectangleProperties: RectangleProperties {
 
 class Board {
 public:
-    Board();
+    Board(sf::Font& font);
 
 public:
     void drawBoard(sf::RenderWindow &window) const;
 
-    void setFieldValues(char symbol, int mousePressedX, int mousePressedY);
+    void setFieldValue(char symbol, int mousePressedX, int mousePressedY);
 
     [[nodiscard]] bool canWinDiagonally(int rowIndex, int columnIndex) const;
     void colorWinningSymbols(const std::vector<Field>& winningFields);
@@ -48,6 +48,7 @@ public:
     Field& getFieldByCoordinates(int x, int y);
 
 private:
+    sf::Font& m_font;
     std::vector<std::vector<Field>> fields = {
             {Field(0, 0, 300, 300),   Field(300, 0, 600, 300),   Field(600, 0, 900, 300)},
             {Field(0, 300, 300, 600), Field(300, 300, 600, 600), Field(600, 300, 900, 600)},

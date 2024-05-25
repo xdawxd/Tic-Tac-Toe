@@ -12,7 +12,7 @@ Engine::Engine() {
     gameState = MENU;
 }
 
-sf::Font initFont() {  // todo: not working for some reason (or maybe working idk)
+sf::Font initFont() {
     sf::Font font;
     font.loadFromFile("../fonts/arial.ttf"); // adjust the CWD to remove the ../
     return font;

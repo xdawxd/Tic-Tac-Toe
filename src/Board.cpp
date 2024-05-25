@@ -2,9 +2,9 @@
 
 #include "Board.hpp"
 
-Board::Board() = default;
+Board::Board(sf::Font& font) : m_font(font) {};
 
-void Board::drawBoard(sf::RenderWindow &window) const { // TODO: consider moving the drawing to the Engine class
+void Board::drawBoard(sf::RenderWindow &window) const {
     RectangleProperties rect;
     HorizontalRectangleProperties horizontalRect;
     VerticalRectangleProperties verticalRect;
@@ -33,7 +33,7 @@ void Board::drawBoard(sf::RenderWindow &window) const { // TODO: consider moving
     drawSymbols(window);
 }
 
-void Board::setFieldValues(char symbol, int mousePressedX, int mousePressedY) {
+void Board::setFieldValue(char symbol, int mousePressedX, int mousePressedY) {
     Field &field = getFieldByCoordinates(mousePressedX, mousePressedY);
     if (field.symbol == ' ')
         field.symbol = symbol;
@@ -45,11 +45,8 @@ void Board::drawSymbols(sf::RenderWindow &window) const {
             Field field = fields[i][j];
 
             sf::Text text;
-            sf::Font font;
-            font.loadFromFile("../fonts/arial.ttf"); // adjust the CWD to remove the ../
-
             text.setString(field.symbol);
-            text.setFont(font);
+            text.setFont(m_font);
             text.setCharacterSize(400);
             text.setPosition(field.x0 + 50, field.y0 - 150);
             text.setFillColor(field.color);
