@@ -26,6 +26,12 @@ bool Button::isClicked(sf::Event& event, sf::Vector2f mousePosition) {
     return false;
 }
 
+bool Button::isHovered(sf::Event &event, sf::Vector2f mousePosition) {
+    if (m_text.getGlobalBounds().contains(mousePosition))
+        return true;
+    return false;
+}
+
 void Button::scaleOnHover(sf::Vector2f mousePosition) {
     if (m_text.getGlobalBounds().contains(mousePosition))
         m_text.setScale(1.1f, 1.1f);

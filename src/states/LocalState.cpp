@@ -23,14 +23,20 @@ void LocalState::render() {
 
 GameState LocalState::handleEvent() {
     sf::Event event{};
+    sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
     while (m_window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             return EXIT;
+
+        if (m_menuButton.isClicked(event, mousePosition)) {
+            return MENU;
+        }
+
         if (finished) {
             if (event.type == sf::Event::MouseButtonPressed)
                 reset();
         }
-        if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.type == sf::Event::MouseButtonPressed && !m_menuButton.isHovered(event, mousePosition)) {
             m_action.handleMove(event);
             checkMove();
         }

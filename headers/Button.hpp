@@ -14,6 +14,7 @@ public:
 
 public:
     bool isClicked(sf::Event& event, sf::Vector2f mousePosition);
+    bool isHovered(sf::Event& event, sf::Vector2f mousePosition);
     void scaleOnHover(sf::Vector2f mousePosition);
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
