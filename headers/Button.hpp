@@ -8,11 +8,9 @@ public:
     Button() = default;
     Button(const sf::String& text);
 
-public:
+public: // TODO: sort the method declarations & definitions
     void setStyle(sf::Font& font, sf::Color fillColor, sf::Color outlineColor, float outlineThickness, unsigned int characterSize);
     void setButtonPosition(float x, float y);
-
-public:
     bool isClicked(sf::Event& event, sf::Vector2f mousePosition);
     bool isHovered(sf::Event& event, sf::Vector2f mousePosition);
     void scaleOnHover(sf::Vector2f mousePosition);
