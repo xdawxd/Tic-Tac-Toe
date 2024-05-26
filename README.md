@@ -25,19 +25,18 @@ a Tic Tac Toe game implementation using C++ and SFML introducing local mode and 
 ![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/5e96e0d6-83bd-44e3-aa9d-0ab7dcc7f2cc)
 
 ### Local view
-![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/433493ce-75ef-4094-9302-2c77d08e10b8)
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/09569edb-96a9-4356-a7fe-d5b3c31410a5)
 
 ### Player win
 
 **Horizontal**
-![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/2b2d65c6-1388-4e7a-8d01-08e370d3499a)
-
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/2114cc90-dc91-4395-b24a-39045faab6f2)
 
 **Vertical**
-![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/6cf6a859-08bb-46f6-9f29-9688181ca1dd)
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/57e85fbe-6a48-4cb9-8579-52a8f4075a7e)
 
 **Diagonal**
-![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/ce03fc9e-1ffd-4074-974f-ea973b81cdad)
+![image](https://github.com/xdawxd/Tic-Tac-Toe/assets/58686770/004fd61c-e27a-4895-ba00-c99b0b7ce2d6)
 
 ## Design patterns used
 
@@ -51,7 +50,7 @@ a Tic Tac Toe game implementation using C++ and SFML introducing local mode and 
 * ~~Change #include <> to "" for local .hpp files~~
 * ~~Create a Base Button Class (see TODO in src/states/LocalState.cpp)~~
 * ~~X (close window) on navigation not working~~
-* Implement LocalState back to menu Button (fix a bug with placing a symbol after clicking "MENU")
+* ~~Implement LocalState back to menu Button (fix a bug with placing a symbol after clicking "MENU")~~
 * Display "X Wins!", "O Wins!" or "Draw!" in some way
 * Tidy the Board and Field classes. Resolve other todo's
 * Implement Multiplayer state
