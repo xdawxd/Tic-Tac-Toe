@@ -4,6 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+#include "Button.hpp"
 #include "State.hpp"
 
 class MenuState : public State {
@@ -26,5 +27,5 @@ private:
 private:
     sf::Text m_title;
     GameState m_gameState = MENU;
-    std::vector<sf::Text> m_menuOptions;
+    std::vector<Button> m_menuOptions;
 };

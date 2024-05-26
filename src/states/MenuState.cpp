@@ -11,20 +11,14 @@ void MenuState::init() {
 
 void MenuState::update() {
     sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
-
     for (auto & menuOption : m_menuOptions)
-    {
-        if (menuOption.getGlobalBounds().contains(mousePosition))
-            menuOption.setScale(1.1f, 1.1f);
-        else
-            menuOption.setScale(1.f, 1.f);
-    }
+        menuOption.scaleOnHover(mousePosition);
 }
 
 void MenuState::render() {
     m_window.clear(sf::Color(sf::Color::Black));
     m_window.draw(m_title);
-    for (const auto & menuOption : m_menuOptions)
+    for (const auto& menuOption : m_menuOptions)
     {
         m_window.draw(menuOption);
     }
@@ -34,16 +28,15 @@ void MenuState::render() {
 GameState MenuState::handleEvent() {
     sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
 
-
     sf::Event event{};
     while (m_window.pollEvent(event))
     {
         if (event.type == sf::Event::Closed ||
-            (event.type == sf::Event::MouseButtonReleased && m_menuOptions[2].getGlobalBounds().contains(mousePosition)))
+            (event.type == sf::Event::MouseButtonReleased && m_menuOptions[2].isClicked(event, mousePosition)))
             return EXIT;
-        else if (event.type == sf::Event::MouseButtonReleased && m_menuOptions[0].getGlobalBounds().contains(mousePosition))
+        else if (event.type == sf::Event::MouseButtonReleased && m_menuOptions[0].isClicked(event, mousePosition))
             return LOCAL;
-        else if (event.type == sf::Event::MouseButtonReleased && m_menuOptions[1].getGlobalBounds().contains(mousePosition))
+        else if (event.type == sf::Event::MouseButtonReleased && m_menuOptions[1].isClicked(event, mousePosition))
             return MULTIPLAYER;
     }
     return m_gameState;
@@ -79,18 +72,9 @@ void MenuState::initOptions() {
 
     for (size_t optionIndex = 0; optionIndex < options.size(); ++optionIndex)
     {
-        sf::Text option;
-        option.setString(options[optionIndex]);
-        option.setFont(m_font);
-        option.setCharacterSize(67);
-        option.setOutlineColor(sf::Color::Black);
-        option.setOutlineThickness(2);
-        option.setOrigin(option.getGlobalBounds().width / 2.f, option.getGlobalBounds().height / 2.f);
-        option.setPosition(sf::Vector2f(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f - 76.f + 4.f * optionIndex * 22.f));
-
-        option.setFillColor(sf::Color(sf::Color::Black));
-        option.setOutlineColor(sf::Color::White);
-
+        Button option = Button(options[optionIndex]);
+        option.setStyle(m_font, sf::Color::Black, sf::Color::White, 2, 68);
+        option.setButtonPosition(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f - 76.f + 4.f * optionIndex * 22.f);
         m_menuOptions.push_back(option);
     }
 }

@@ -28,7 +28,7 @@ struct VerticalRectangleProperties: RectangleProperties {
 
 class Board {
 public:
-    Board(sf::Font& font);
+    explicit Board(sf::Font& font);
 
 public:
     void drawBoard(sf::RenderWindow &window) const;

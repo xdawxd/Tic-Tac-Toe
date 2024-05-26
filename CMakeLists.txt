@@ -11,6 +11,7 @@ add_executable(tic_tac_toe main.cpp
         headers/Board.hpp
         headers/Action.hpp
         headers/Field.hpp
+        headers/Button.hpp
         headers/states/State.hpp
         headers/states/MenuState.hpp
         headers/states/LocalState.hpp
@@ -21,6 +22,7 @@ add_executable(tic_tac_toe main.cpp
         src/Board.cpp
         src/Action.cpp
         src/Field.cpp
+        src/Button.cpp
         src/states/State.cpp
         src/states/MenuState.cpp
         src/states/LocalState.cpp

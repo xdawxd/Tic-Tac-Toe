@@ -9,7 +9,8 @@ void LocalState::init() {
 
 void LocalState::update() {
     updateScore();
-    updateBackToMenuButton();
+    sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
+    m_menuButton.scaleOnHover(mousePosition);
 }
 
 void LocalState::render() {
@@ -127,31 +128,8 @@ void LocalState::updateScore() {
 }
 
 void LocalState::initBackToMenuButton() {
-    m_menuButton.setString("MENU");
-    m_menuButton.setFont(m_font);
+    m_menuButton = Button("MENU");
+    m_menuButton.setStyle(m_font, sf::Color::Black, sf::Color::White, 2, 24);
+    m_menuButton.setButtonPosition(m_window.getSize().x / 20.f, m_window.getSize().y / 40.f);
 
-    m_menuButton.setFillColor(sf::Color(sf::Color::Black));
-    m_menuButton.setOutlineColor(sf::Color::White);
-    m_menuButton.setOutlineThickness(2);
-    m_menuButton.setCharacterSize(24);
-    m_menuButton.setOrigin( // TODO: correct the position
-            m_menuButton.getGlobalBounds().left  + m_menuButton.getGlobalBounds().width / 2.f,
-            m_menuButton.getGlobalBounds().top + m_menuButton.getGlobalBounds().height / 2.f
-    );
-    m_menuButton.setPosition(sf::Vector2f(m_window.getSize().x / 20.f, m_window.getSize().y / 40.f));
-}
-
-void LocalState::updateBackToMenuButton() {
-    // The same functionality as MenuState.update(), move to State?
-    // TODO: create a base button class that redirects to another state
-    // e.g. in MenuState all of the buttons redirect to some other state
-    // in LocalState while clicking the "MENU" button, we also want to redirect back to menu
-    // The class should have: checkIfClicked(), scaleOnHover(), redirect()
-    sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
-
-    if (m_menuButton.getGlobalBounds().contains(mousePosition))
-        m_menuButton.setScale(1.1f, 1.1f);
-    else {
-        m_menuButton.setScale(1.f, 1.f);
-    }
 }

@@ -49,8 +49,9 @@ a Tic Tac Toe game implementation using C++ and SFML introducing local mode and 
 * ~~Refactor function definition order in .cpp files~~
 * ~~Rearange public/protected/private methods and variables inside the classes to some unified order~~
 * ~~Change #include <> to "" for local .hpp files~~
-* Create a Base Button Class (see TODO in src/states/LocalState.cpp)
-* Implement LocalState back to menu Button
+* ~~Create a Base Button Class (see TODO in src/states/LocalState.cpp)~~
+* ~~X (close window) on navigation not working~~
+* Implement LocalState back to menu Button (fix a bug with placing a symbol after clicking "MENU")
 * Display "X Wins!", "O Wins!" or "Draw!" in some way
 * Tidy the Board and Field classes. Resolve other todo's
 * Implement Multiplayer state

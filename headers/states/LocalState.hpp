@@ -7,6 +7,7 @@
 
 #include "Action.hpp"
 #include "Board.hpp"
+#include "Button.hpp"
 #include "State.hpp"
 
 class LocalState : public State {
@@ -34,14 +35,13 @@ private:
     void initScore();
     void updateScore();
     void initBackToMenuButton();
-    void updateBackToMenuButton();
 
 private:
     Board m_board;
     Action m_action;
 
-    sf::Text m_score;
-    sf::Text m_menuButton;
+    sf::Text m_score{};
+    Button m_menuButton;
 
     short int xWins = 0;
     short int yWins = 0;
